@@ -67,7 +67,7 @@ function displayProducts(category, productSection, categoryData) {
     }
 
     // Used filter(product => product) to ensure only valid product objects are processed i.e no null entries
-    products.filter(product => product).forEach(product => {
+    products.forEach(product => {
         let productElement = document.createElement('div');
         productElement.classList.add('col-md-3');
         productElement.innerHTML = `
