@@ -42,5 +42,16 @@ onload = function () {
         lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For mobile or when at the top
     });
 
+
     
+    let categoryLinks = document.querySelectorAll(".forSessionStorage");
+
+    // click
+    for (let i = 0; i < categoryLinks.length; i++) {
+        categoryLinks[i].addEventListener("click", function() {
+            // Store the category in sessionStorage
+            let category = categoryLinks[i].getAttribute("data-category");
+            sessionStorage.setItem("selectedCategory", category);
+        });
+    }
 }

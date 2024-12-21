@@ -197,7 +197,6 @@ export let categoryData = {
 
         ]
     }
-
 };
 
-export * from "./category-data.js";
+export default categoryData.products;
