@@ -1,25 +1,22 @@
-import { categoryData } from "./category-data.js";
+import {categoryData} from "./category-data.js";
 
 onload = function () {
     // Get the URL parameter for category, default to "women" if not provided
-    let urlParams = new URLSearchParams(window.location.search);
-    let selectedCategory = urlParams.get('category') || 'women'; // Default to "women"
+
+    let selectedCategory = sessionStorage.getItem('selectedCategory') || 'women'; // Default to "women"
 
     let radioButtons = document.querySelectorAll('input[name="productCategory"]');
     let productSection = document.querySelector('#productSection'); // Common section for all products
 
     // Set the selected category in the radio buttons
     // Check the selected radio button
-    let selectedRadioButton = document.querySelector(`input[name="productCategory"][value="${selectedCategory}"]`);
-    if (selectedRadioButton) {
-        selectedRadioButton.checked = true; 
-    }
+    document.querySelector(`input[name="productCategory"][value="${selectedCategory}"]`).checked = true;
 
     //  radio buttons
     selectCategory(radioButtons, productSection, categoryData);
 
     //Called in onload for the purpose of displaying the default category
-    displayProducts(selectedCategory, productSection, categoryData);
+    productSection.innerHTML = displayProducts(selectedCategory, categoryData);
 
     // Code for the nav bar to go up when scrolling down
     let lastScrollTop = 0;
@@ -43,53 +40,51 @@ onload = function () {
     });
 };
 
-// Function to initialize category selection with radio buttons
 function selectCategory(radioButtons, productSection, categoryData) {
     radioButtons.forEach(radioButton => {
         radioButton.addEventListener('click', function () {
             let selectedCategory = this.value;
             // called after selecting a specific 
-            displayProducts(selectedCategory, productSection, categoryData);
+            productSection.innerHTML = displayProducts(selectedCategory, categoryData);
         });
     });
 }
 
 // Function to display products in the selected section
-function displayProducts(category, productSection, categoryData) {
-    productSection.innerHTML = ''; // Clear any previous products
-
+function displayProducts(selectedCategory, categoryData) {
+    
     // Filter products for the selected category
-    let products = categoryData.products[category];
-
+    let products = categoryData.products[selectedCategory];
+    
     if (products.length === 0) {
         productSection.innerHTML = `<p>No products available in this category.</p>`;
         return;
     }
 
-    // Used filter(product => product) to ensure only valid product objects are processed i.e no null entries
+    // using for each to render data
+    let productElement = "";
     products.forEach(product => {
-        let productElement = document.createElement('div');
-        productElement.classList.add('col-md-3');
-        productElement.innerHTML = `
-            <div>
-                <a href="javaScript:void(0)" class="text-decoration-none text-black">
+        productElement += `
+            <div class="col-md-3 mb-5">
+                <a href="javaScript:void(0)" class="box text-decoration-none text-black">
                     <div class="image-sizer">
                         ${product.images[0] ? `<img class="hover-pattern" src="${product.images[0]}" alt="" loading="lazy">` : ""}
                         <img class="hover-image" src="${product.images[0]}" alt="" loading="lazy">
                         <img class="image" src="${product.images[0]}" alt="${product.title}" loading="lazy">
                     </div>
-                    <div class="row">
-                        <section class="col-7 ps-5 ps-lg-5">
-                            <p class="mb-0 fs-19">New!</p>
-                            <p class="fs-19"><b>${product.title}</b></p>
-                        </section>
-                        <section class="col-5 pe-5 pe-lg-5">
-                            <p class="text-end fs-19">Rs. ${product.price}</p>
-                        </section>
-                    </div>
+                    <section class="w-50 float-start">
+                        <span class="mb-0 fs-19 ">New! <br/></span>
+                        <span class="fs-19"><b>${product.title}</b></span>
+                    </section>
+                    <section class="  float-end">
+                        <span class="text-end fs-19">Rs. ${product.price}</span>
+                    </section>
                 </a>
             </div>
         `;
-        productSection.appendChild(productElement);
+        // productSection.appendChild(productElement);
+        
     });
+
+    return productElement;
 }

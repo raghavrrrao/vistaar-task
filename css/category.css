@@ -122,33 +122,6 @@ input[type="radio"]:checked + label {
     color: black;
 }
 
-@media only screen and (max-width: 850px) {
-    .navbar>.container-fluid {
-        display: inline-block;
-    }
-
-    .big-screen-header {
-        display: none;
-    }
-
-    .mobile-view-header {
-        display: block;
-    }
-
-    .navbar-toggler {
-        font-size: 10px;
-        color: #000 !important;
-        border: 2px solid black;
-        border-radius: 50%;
-        padding: 10px 6px;
-        font-weight: bolder;
-    }
-
-    .navbar-toggler-icon {
-        width: 2.5em;
-        height: 1.5em;
-    }
-}
 
 /* header css end here */
 
@@ -158,11 +131,19 @@ input[type="radio"]:checked + label {
 .image-sizer {
     margin: auto;
     position: relative;
-    width: 280px;
+    width: 100%;
     height: 382px;
     overflow: hidden;
     border-radius: 15px;
     transition: all 0.3s ease;
+}
+
+.box {
+
+    margin: 0px auto;
+    display: block;
+    width: 280px;
+    text-align: start;
 }
 
 .image-sizer img {
@@ -212,13 +193,17 @@ input[type="radio"]:checked + label {
 }
 
 /* footer css  starts here*/
+.margin-left{
+    margin-left: 170px;
+}
+
 .bg-yellow {
     background: #FFC700;
 }
 
 .footer-ul {
     list-style-type: none;
-    margin-left: -50px;
+    margin-left: 50px;
 }
 
 .footer-ul>li {
@@ -231,13 +216,17 @@ input[type="radio"]:checked + label {
     font-size: 17px;
 }
 
+.fs-24 {
+    font-size: 24px;
+}
+
 .fs-16 {
     font-size: 16px;
     font-weight: 500;
 }
 
 .fs-32 {
-    font-size: 32px;
+    font-size: 29px;
 }
 
 .lh-36 {
@@ -268,7 +257,7 @@ input[type="radio"]:checked + label {
 .footer-ul-2>li {
     float: left;
     padding: 0px 30px;
-    font-size: 26px;
+    font-size: 29px;
 }
 
 .footer-scrolling-text {
@@ -279,7 +268,38 @@ input[type="radio"]:checked + label {
     margin-top: -5px;
 }
 
-@media only screen and (max-width: 1000px) {
+.float-startManual{
+    float: left;
+}
+/* footer css end here */
+
+@media only screen and (max-width: 576px) {
+    .navbar>.container-fluid {
+        display: inline-block;
+    }
+
+    .big-screen-header {
+        display: none;
+    }
+
+    .mobile-view-header {
+        display: block;
+    }
+
+    .navbar-toggler {
+        font-size: 10px;
+        color: #000 !important;
+        border: 2px solid black;
+        border-radius: 50%;
+        padding: 10px 6px;
+        font-weight: bolder;
+    }
+
+    .navbar-toggler-icon {
+        width: 2.5em;
+        height: 1.5em;
+    }
+
     .footer-ul {
         margin-left: -20px;
     }
@@ -299,9 +319,9 @@ input[type="radio"]:checked + label {
     }
 
     .footer-ul-2>li {
-        float: left;
+        /* float: left; */
         padding: 0px 10px;
-        font-size: 20px;
+        font-size: 28px;
     }
 }
 
