@@ -108,4 +108,4 @@ export function setCategory(category) {
     sessionStorage.setItem('selectedCategory', category);
 }
 
-export * from "./testModule.js";
+export * from "./homeModule.js";

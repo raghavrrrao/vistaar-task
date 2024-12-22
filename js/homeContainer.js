@@ -1,5 +1,5 @@
 import { data1,data2,data3} from "./product-data.js";
-import * as tm from "./testModule.js";
+import * as tm from "./homeModule.js";
 
 onload = function () {
     let container1 = document.querySelector("#products-container1");
