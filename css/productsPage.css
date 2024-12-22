@@ -4,11 +4,6 @@
     box-sizing: border-box;
 }
 
-body {
-    width: 100%;
-    overflow-x: hidden;
-}
-
 main {
     width: 90%;
     margin: 0 auto;
